@@ -33,6 +33,8 @@ public class AirfieldManager {
         System.out.println("0) Exit");
 
         double mikes = 0;
+
+
         int response = theScanner.nextInt();
         //
         AirCraft ac = new AirCraft();
@@ -45,10 +47,11 @@ public class AirfieldManager {
             mikes = 30;
         }
 
+        //Register callsign
         System.out.println("Enter Callsign");
-
         ac.myCallSign = theScanner.next();
 
+        //Register aircraft type
         System.out.println();
         System.out.println("Aircraft Type");
         System.out.println("1)  C130");
@@ -84,7 +87,37 @@ public class AirfieldManager {
         }
 
 
+        System.out.println();
+        System.out.println("1) Fuel Request");
+        System.out.println("2) No Fuel Request");
 
+
+        //TODO: Do/while?
+        response = theScanner.nextInt();
+        if(response == 1){
+            System.out.println("Enter lbs of fuel requested");
+            ac.myFuelRequest = theScanner.nextInt();
+        }else if(response == 2){
+            ac.myFuelRequest = 0;
+        }else{
+
+        }
+
+        //Cargo download request
+        System.out.println("1) Cargo download request");
+        System.out.println("2) No cargo download");
+        response = theScanner.nextInt();
+        if(response==1){
+            System.out.println("# of pallets:");
+            ac.myDownloadPallets = theScanner.nextInt();
+            System.out.println("# of passengers");
+            ac.myDownloadPax = theScanner.nextInt();
+        }
+
+
+
+
+        //process information
         Calendar date = Calendar.getInstance();
         long t= date.getTimeInMillis();
         Date landTime =new Date((long) (t + (mikes * ONE_MINUTE_IN_MILLIS)));
@@ -95,12 +128,15 @@ public class AirfieldManager {
 
 
 
+
+
         myAirCrafts.add(ac);
         myAirfield.dispatch(ac);
 
         System.out.println(ac.myACTYPE.toString() + " " + ac.myCallSign + " report to parking spot: " + ac.myParkingSpot );
         System.out.println();
         System.out.println();
+        myAirfield.report();
         System.out.println();
   //      System.out.println("END");
     }

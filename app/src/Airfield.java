@@ -35,6 +35,62 @@ public class Airfield {
     public void dispatch(AirCraft ac) {
 
         setParkingSpot(ac);
+
+        dispatchPallets(ac);
+        dispatchPax(ac);
+
+    }
+
+    /**
+     * Dispatches kloaders and forklifts based on the number available and #of pallets to be downloaded
+     * @param ac the aircraft being downloaded
+     */
+    private void dispatchPallets(AirCraft ac) {
+        int dispatchKloader = 0;
+        int dispatchForks = 0;
+        if(ac.myDownloadPallets < 3){
+            //dispatch forklift
+            dispatchKloader = 0;
+            dispatchForks = 1;
+        }else if (ac.myDownloadPallets > 8) {
+            dispatchKloader = 2;
+            dispatchForks = 2;
+        }else{
+            dispatchKloader = 1;
+            dispatchForks = 1;
+        }
+
+
+        if(myForkLifts - dispatchForks < 0){
+            dispatchForks = myForkLifts;
+        }else{
+            myForkLifts -= dispatchForks;
+        }
+
+        if(myKloaders - dispatchKloader < 0){
+            dispatchKloader = myKloaders;
+        }else{
+            myKloaders -= dispatchKloader;
+        }
+
+        System.out.println("Dispatching " + dispatchKloader + " Kloaders & " + dispatchForks + " forklifts");
+    }
+
+    private void dispatchPax(AirCraft ac) {
+        int dispatchBus = 0;
+        int dispatchVans = 0;
+
+        if(ac.myDownloadPax > 80){
+            dispatchBus = 2;
+        }else if (ac.myDownloadPax > 20) {
+            dispatchBus = 1;
+        }else if(ac.myDownloadPax > 10 && ac.myDownloadPax < 20) {
+            dispatchBus = 0;
+            dispatchVans = 2;
+        }else if(ac.myDownloadPax < 10 && ac.myDownloadPax > 0){
+            dispatchVans = 1;
+        }
+        System.out.println("Dispatching " + dispatchBus + " Pax busses & " + dispatchVans + " pax vans");
     }
 
 
@@ -90,5 +146,13 @@ public class Airfield {
      */
     public String getParkingSPot(AirCraft ac){
         return ac.myParkingSpot;
+    }
+
+    public void report() {
+        System.out.println("#Kloaders available: "+myKloaders);
+        System.out.println("#Forklifts available: "+myForkLifts);
+        System.out.println("#Busses available: "+myBusses);
+        System.out.println("#Vans available: "+myVans);
+        System.out.println("#Fuel Trucks available: "+myFuelTrucks);
     }
 }

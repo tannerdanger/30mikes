@@ -26,6 +26,9 @@ public class AirCraft {
     protected Date myTakeOffTime;
 
     protected String myParkingSpot;
+    protected int myFuelRequest;
+    protected int myDownloadPallets;
+    protected int myDownloadPax;
 
 
 }
