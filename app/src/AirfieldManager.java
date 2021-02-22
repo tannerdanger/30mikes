@@ -22,16 +22,25 @@ public class AirfieldManager {
 
     }
 
+    /**
+     * Process a new request to land
+     * (information would be given from aircraft over radios)
+     * @param theScanner
+     */
     public void processRequest(Scanner theScanner){
         System.out.println("1) Register new 30 min out call");
         System.out.println("2) Register new XX min out call");
+        System.out.println("0) Exit");
 
         double mikes = 0;
+        int response = theScanner.nextInt();
         //
         AirCraft ac = new AirCraft();
-        if(theScanner.nextInt() != 1){
+        if(response == 2) {
             System.out.println("Enter mikes out");
             mikes = theScanner.nextInt();
+        }else if(response == 0){
+            System.exit(1);
         }else{
             mikes = 30;
         }
@@ -90,8 +99,10 @@ public class AirfieldManager {
         myAirfield.dispatch(ac);
 
         System.out.println(ac.myACTYPE.toString() + " " + ac.myCallSign + " report to parking spot: " + ac.myParkingSpot );
-
-        System.out.println("END");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+  //      System.out.println("END");
     }
 
 

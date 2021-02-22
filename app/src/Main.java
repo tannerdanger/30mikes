@@ -10,7 +10,9 @@ public class Main {
 
         AirfieldManager airfieldManager = new AirfieldManager(airfield, sc);
 
-        airfieldManager.processRequest(sc);
+        do {
+            airfieldManager.processRequest(sc);
+        }while(true);
 
     }
 
