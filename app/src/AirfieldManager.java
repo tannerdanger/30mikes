@@ -136,7 +136,9 @@ public class AirfieldManager {
         System.out.println(ac.myACTYPE.toString() + " " + ac.myCallSign + " report to parking spot: " + ac.myParkingSpot );
         System.out.println();
         System.out.println();
+
         myAirfield.report();
+        System.out.println();
         System.out.println();
   //      System.out.println("END");
     }
