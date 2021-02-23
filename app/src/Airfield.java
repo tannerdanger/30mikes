@@ -39,6 +39,11 @@ public class Airfield {
         myForkLifts = TOTALFORKS;
     }
 
+    public static void registerDeparture(AirCraft ac) {
+        //TODO: Release vehicles
+        //TODO: Report off the deck time
+    }
+
 
     /**
      * sets parking spot and dispatches services

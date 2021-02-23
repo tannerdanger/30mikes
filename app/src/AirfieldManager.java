@@ -28,19 +28,31 @@ public class AirfieldManager {
      * @param theScanner
      */
     public void processRequest(Scanner theScanner){
+        AirCraft ac = new AirCraft();
+        int mikes = 0;
         System.out.println("1) Register new 30 min out call");
         System.out.println("2) Register new XX min out call");
+        System.out.println("3) Register Aircraft Departure");
         System.out.println("0) Exit");
-
-        double mikes = 0;
 
 
         int response = theScanner.nextInt();
-        //
-        AirCraft ac = new AirCraft();
+
+        //report new
         if(response == 2) {
             System.out.println("Enter mikes out");
             mikes = theScanner.nextInt();
+        }else if(response == 3){
+            System.out.println("Callsign:");
+            //TODO: Scan aircraft for matching call sign and release all vehicles
+            String callsign = theScanner.next();
+
+            for(AirCraft aircraft : myAirCrafts){
+                if(aircraft.myCallSign.compareTo(callsign) == 0){
+                    myAirfield.registerDeparture(aircraft);
+                }
+            }
+
         }else if(response == 0){
             System.exit(1);
         }else{
