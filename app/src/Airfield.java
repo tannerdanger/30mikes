@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Airfield {
@@ -24,11 +25,16 @@ public class Airfield {
     public Stack BRAVOROW;
     public Stack CHARLIEROW;
 
+    public ArrayList ALPHA;
+    public ArrayList BRAVO;
+    public ArrayList CHARLIE;
+
 
     /**
      * Creates a new airfield object.
      */
     public Airfield(){
+        registerSpots();
         ALPHAROW = new Stack();
         BRAVOROW = new Stack();
         CHARLIEROW = new Stack();
@@ -38,6 +44,27 @@ public class Airfield {
         myVans = TOTALVANS;
         myForkLifts = TOTALFORKS;
     }
+
+    private void registerSpots(){
+        ALPHA = new ArrayList(5);
+        for(int i = 0; i < 5; i++){
+            ParkingSpace spot = new ParkingSpace(ALPHA, "Alpha", i+1);
+            ALPHA.add(spot);
+        }
+
+        CHARLIE = new ArrayList(5);
+        for(int i = 0; i < 5; i++){
+            ParkingSpace spot = new ParkingSpace(ALPHA, "Charlie", i+1);
+            CHARLIE.add(spot);
+        }
+
+        BRAVO = new ArrayList(5);
+        for(int i = 0; i < 5; i++){
+            ParkingSpace spot = new ParkingSpace(ALPHA, "Bravo", i+1);
+            BRAVO.add(spot);
+        }
+    }
+
 
     public static void registerDeparture(AirCraft ac) {
         //TODO: Release vehicles
